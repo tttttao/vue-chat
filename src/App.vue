@@ -1,13 +1,11 @@
 <template>
   <a-locale-provider :locale="zh_CN">
     <div class="app h-screen flex bg-blue-100">
-
       <div id="chat-body" class="rounded-md bg-white m-auto shadow-xl flex">
-        <div class="flex justify-center flew-col py-8 left-menu w-12 h-full px-2 border-r border-grey">
-          <div class="avatar w-8 h-8 bg-blue-400 rounded">
-            <a-avatar shape="square" size="large" :src="avatarUrl" :style="{height:'100%', width:'100%'}"/>
-          </div>
+        <div class="chat-menu">
+          <chat-menu></chat-menu>
         </div>
+
         <div class="middle-list h-full w-64 py-6 bg-yellow border-r border-grey ">
           <div class="search px-3">
             <SearchInput></SearchInput>
@@ -16,10 +14,9 @@
             <friend-list v-for="item in friendList" :key="item"/>
           </div>
         </div>
-        <div class="chat-window">
-          <div class="chat-header"></div>
-          <div class="chat-body"></div>
-          <div class="chat-input"></div>
+
+        <div class="chat-window w-full h-full">
+          <chat-body></chat-body>
         </div>
       </div>
     </div>
@@ -30,6 +27,8 @@
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import SearchInput from "./components/Search/SearchInput";
 import FriendList from "./components/FriendList/FriendList";
+import ChatBody from "./components/ChatBody";
+import ChatMenu from "./components/ChatMenu/ChatMenu";
 
 export default {
   name: 'app',
@@ -39,12 +38,10 @@ export default {
       friendList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     }
   },
-  computed: {
-   avatarUrl() {
-     return require('@/assets/avatar-tao.jpg');
-   }
-  },
+  computed: {},
   components: {
+    ChatMenu,
+    ChatBody,
     FriendList,
     SearchInput,
   }
@@ -52,14 +49,20 @@ export default {
 </script>
 
 <style>
-.friend-list{
-height: 95%;
+.btn-border-none button {
+  @apply border-none shadow-none;
 }
+
+.friend-list {
+  height: 95%;
+}
+
 #chat-body {
   vertical-align: middle;
   height: 780px;
   width: 1150px;
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

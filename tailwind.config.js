@@ -363,6 +363,12 @@ module.exports = {
       'span-4': 'span 4 / span 4',
       'span-5': 'span 5 / span 5',
       'span-6': 'span 6 / span 6',
+      'span-8': 'span 8 / span 8',
+      'span-10': 'span 10 / span 10',
+      'span-12': 'span 12 / span 12',
+      'span-14': 'span 14 / span 14',
+      'span-15': 'span 15 / span 15',
+      'span-16': 'span 16 / span 16',
       'span-full': '1 / -1',
     },
     gridRowStart: {
@@ -408,6 +414,8 @@ module.exports = {
       4: 'repeat(4, minmax(0, 1fr))',
       5: 'repeat(5, minmax(0, 1fr))',
       6: 'repeat(6, minmax(0, 1fr))',
+      12: 'repeat(12, minmax(0, 1fr))',
+      18: 'repeat(18, minmax(0, 1fr))',
     },
     height: (theme) => ({
       auto: 'auto',
