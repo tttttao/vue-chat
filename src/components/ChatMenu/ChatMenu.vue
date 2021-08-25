@@ -5,14 +5,20 @@
     </div>
     <div class="row-span-16 ">
       <div class="w-8 h-8 btn-border-none mt-4">
-        <a-button text="text" icon="message"/>
+        <a-button text="text">
+          <a-icon type="message" theme="twoTone"/>
+        </a-button>
       </div>
       <div class="w-8 h-8 btn-border-none mt-4">
-        <a-button text="text" icon="team"/>
+        <a-button text="text">
+          <a-icon type="team"/>
+        </a-button>
       </div>
     </div>
     <div class="w-8 h-8 items-end btn-border-none">
-      <a-button text="text" icon="menu"/>
+      <a-button text="text">
+        <a-icon type="menu"/>
+      </a-button>
     </div>
   </div>
 </template>
@@ -29,6 +35,10 @@ export default {
 </script>
 
 <style>
+.chat-menu button {
+  @apply w-full p-0;
+}
+
 .left-menu i {
   @apply text-lg !important;
 }

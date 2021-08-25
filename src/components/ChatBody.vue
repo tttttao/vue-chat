@@ -3,7 +3,7 @@
     <div class="chat-header border-b">
       <div class="btn-border-none flex justify-end text-gray-500">
         <div class="pr-2 pt-1">
-          <a-button text="text" size="small" icon="close"/>
+          <a-button text="text" size="small" @click="onCloseClick" icon="close"/>
         </div>
       </div>
       <div class="text-xl font-normal  px-4 py-1 text-black">
@@ -24,10 +24,10 @@
         </div>
       </div>
       <div class="input w-full h-32 p-4">
-        <textarea name="message-to-send" class="focus:outline-none w-full resize-none border-none" placeholder="Type your message" rows="5"></textarea>
+        <textarea name="message-to-send" class="focus:outline-none w-full resize-none border-none" rows="5"></textarea>
       </div>
       <div class="input-footer w-full flex flex-row-reverse pr-3 py-0 mb-1">
-          <a-button type="primary" size="small">发送(S)</a-button>
+        <a-button type="primary" size="small">发送(S)</a-button>
       </div>
     </div>
   </div>
@@ -39,6 +39,9 @@ export default {
   methods: {
     handleMenuClick(e) {
       console.log(e)
+    },
+    onCloseClick() {
+      console.log('close button click')
     }
   }
 }

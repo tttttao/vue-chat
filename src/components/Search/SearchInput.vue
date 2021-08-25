@@ -2,7 +2,9 @@
   <div class="search-bar justify-between w-full h-8 border-grey mt-2 flex">
     <a-input placeholder="搜索"/>
     <div class="pl-4">
-      <a-button text="text" icon="plus"/>
+      <a-button text="text">
+        <a-icon type="plus"/>
+      </a-button>
     </div>
   </div>
 </template>
@@ -20,5 +22,9 @@ button {
 
 input {
   @apply h-full w-4/5 border rounded-sm border-gray-200 !important;
+}
+
+.search-bar button {
+  @apply w-full px-2 text-base;
 }
 </style>
