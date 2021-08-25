@@ -5,7 +5,7 @@
         <a-avatar icon="user" shape="square" :src="msg.avatar"/>
       </div>
       <div
-          class="msg-body mx-2 tracking-wide rounded font-normal
+          class="msg-body mx-2 tracking-wide rounded-sm font-normal
            mb-2.5 px-3 py-1.5 inline-block leading-relaxed align-middle max-w-lg"
           :class="msgBodyClass">
         {{ msg.msg }}

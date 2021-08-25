@@ -1,6 +1,6 @@
 <template>
   <div class="left-menu pt-8 pb-4 w-12 h-full px-2 border-r border-grey">
-    <div class="avatar w-8 h-8 bg-blue-400 rounded block row-span">
+    <div class="avatar w-8 h-8 rounded-sm">
       <a-avatar shape="square" size="large" :src="avatarUrl" :style="{height:'100%', width:'100%'}"/>
     </div>
     <div class="row-span-16 h-5/6 pt-8 space-y-4">

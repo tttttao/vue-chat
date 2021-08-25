@@ -1,7 +1,7 @@
 <template>
   <a-locale-provider :locale="zh_CN">
     <div class="app h-screen flex bg-blue-100">
-      <div id="chat-body" class="rounded-md bg-white m-auto shadow-xl flex">
+      <div id="chat-body" class="rounded-md bg-white m-auto shadow-xl flex overflow-hidden">
         <div class="chat-menu">
           <chat-menu></chat-menu>
         </div>
