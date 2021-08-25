@@ -6,7 +6,7 @@
           <chat-menu></chat-menu>
         </div>
 
-        <div class="middle-list h-full w-64 py-6 bg-yellow border-r border-grey ">
+        <div class="middle-list h-full w-64 py-6 bg-yellow border-r border-grey">
           <div class="search px-3">
             <SearchInput></SearchInput>
           </div>
@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <div class="chat-window w-full h-full">
+        <div class="chat-window w-full h-full bg-gray-110">
           <chat-body></chat-body>
         </div>
       </div>

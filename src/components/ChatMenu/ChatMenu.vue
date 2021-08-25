@@ -6,7 +6,7 @@
     <div class="row-span-16 h-5/6 pt-8 space-y-4">
       <div class="menu-button btn-border-none">
         <a-button text="text">
-          <a-icon type="message" theme="twoTone"/>
+          <a-icon type="message" theme="twoTone" two-tone-color="#287DFE"/>
         </a-button>
       </div>
       <div class="menu-button btn-border-none">
