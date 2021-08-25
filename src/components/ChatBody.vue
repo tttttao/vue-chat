@@ -14,13 +14,20 @@
     <div class="chat-input row-span-3 flex h-full flex-col">
       <div class="input-tool w-full h-8 flex text-xl">
         <div>
-          <a-button type="text" size="small" icon="smile"/>
+          <a-button type="text" size="small">
+            <a-icon type="smile"></a-icon>
+          </a-button>
+
         </div>
         <div>
-          <a-button text="text" size="small" icon="picture"/>
+          <a-button text="text" size="small">
+            <a-icon type="picture"></a-icon>
+          </a-button>
         </div>
         <div>
-          <a-button text="text" size="small" icon="folder"/>
+          <a-button text="text" size="small">
+            <a-icon type="folder"></a-icon>
+          </a-button>
         </div>
       </div>
       <div class="input w-full h-32 p-4">
@@ -49,10 +56,10 @@ export default {
 
 <style scoped>
 .input-footer button {
-  @apply bg-blue-500 px-2 ;
+  @apply bg-blue-500 px-2;
 }
 
 .input-tool button {
-  @apply border-none mx-3 text-lg;
+  @apply border-none mx-2 text-lg h-full leading-none shadow-none;
 }
 </style>

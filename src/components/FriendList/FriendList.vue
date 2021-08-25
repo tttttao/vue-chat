@@ -5,12 +5,12 @@
         <a-avatar shape="square" size="large" :src="friend.avatar"/>
       </div>
       <div class="date col-span-3">
-        <div class="name text-black font-semibold">
+        <div class="name text-black text-sm font-medium">
           {{ friend.name }}
         </div>
       </div>
       <div class="date col-span-1">{{ friend.date }}</div>
-      <div class="message col-span-3 inline-block overflow-hidden break-normal truncate txt-gradient">
+      <div class="message col-span-3 inline-block overflow-hidden text-xs break-normal truncate txt-gradient">
         {{ friend.isGroup ? friend.msgFrom + ':' + friend.msg : friend.msg }}
       </div>
       <div class="status-icon col-span-1"></div>
