@@ -4,11 +4,11 @@
       <div class="msg-avatar">
         <a-avatar icon="user" shape="square" :src="msg.avatar"/>
       </div>
-      <div
-          class="msg-body mx-2 tracking-wide rounded-sm font-normal
-           mb-2.5 px-3 py-1.5 inline-block leading-relaxed align-middle max-w-lg"
-          :class="msgBodyClass">
-        {{ msg.msg }}
+      <div class="msg-body" :class="msgBodyClass">
+        <span class="" v-if="msg.type === 'txt'">
+          {{ msg.msg }}
+        </span>
+        <img class="" v-else-if="msg.type === 'image'" :src="msg.msg">
       </div>
     </div>
   </div>
@@ -33,4 +33,9 @@ export default {
 </script>
 
 <style scoped>
+.msg-body {
+  @apply mx-2 tracking-wide rounded font-normal
+  mb-2.5 p-2 inline-block leading-relaxed align-middle max-w-lg break-words;
+}
+
 </style>

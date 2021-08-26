@@ -4,14 +4,12 @@
       <a-avatar shape="square" size="large" :src="avatarUrl" :style="{height:'100%', width:'100%'}"/>
     </div>
     <div class="row-span-16 h-5/6 pt-8 space-y-4">
-      <div class="menu-button btn-border-none">
+
+      <div v-for="menu in menus" :key="menu.index" @click="check(menu.index)"
+           :class="{'checked':menu.index === checkedIndex}"
+           class=" menu-button btn-border-none">
         <a-button text="text">
-          <a-icon type="message" theme="twoTone" two-tone-color="#287DFE"/>
-        </a-button>
-      </div>
-      <div class="menu-button btn-border-none">
-        <a-button text="text">
-          <a-icon type="team"/>
+          <a-icon :type="menu.iconType"/>
         </a-button>
       </div>
     </div>
@@ -30,6 +28,19 @@ export default {
     avatarUrl() {
       return require('@/assets/avatar-tao.jpg');
     }
+  },
+  data() {
+    return {
+      checkedIndex: 1,
+      menus: [
+        {index: 1, iconType: 'message', isChecked: true},
+        {index: 2, iconType: 'team', isChecked: false},
+      ]
+    }
+  }, methods: {
+    check(index) {
+      this.checkedIndex = index
+    }
   }
 }
 </script>
@@ -37,6 +48,11 @@ export default {
 <style>
 .chat-menu button {
   @apply w-full p-0;
+}
+
+.checked i {
+  color: #5bbaf5;
+  border-color: #5bbaf5;
 }
 
 .menu-button {

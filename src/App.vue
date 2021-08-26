@@ -1,7 +1,7 @@
 <template>
   <a-locale-provider :locale="zh_CN">
     <div class="app h-screen flex bg-blue-100">
-      <div id="chat-body" class="rounded-md bg-white m-auto shadow-xl flex overflow-hidden">
+      <div id="chat-body" class="rounded-md bg-white m-auto shadow-xl flex overflow-hidden relative">
         <div class="chat-menu">
           <chat-menu></chat-menu>
         </div>
@@ -12,6 +12,12 @@
           </div>
           <div class="friend-list mt-4 overflow-scroll">
             <friend-list v-for="item in friendList" :friend="item" :key="item.id"/>
+          </div>
+        </div>
+
+        <div class="top-tool-buttons  gray-110-buttons right-0 top-0 flex justify-end text-gray-500 absolute">
+          <div class="btn-border-none pr-2 pt-1">
+            <a-button text="text" size="small" icon="close"/>
           </div>
         </div>
 
@@ -39,7 +45,7 @@ export default {
         {
           id: 1,
           name: '全面建设小康社会',
-          msg: '哦？？？？？？？',
+          msg: '👨‍💻哦？？？？？？？',
           msgFrom: '杜杜杜',
           date: '08-12',
           isGroup: true,
@@ -159,6 +165,14 @@ export default {
 <style>
 .btn-border-none button {
   @apply border-none shadow-none;
+}
+
+.gray-110-buttons button {
+  @apply bg-gray-110;
+}
+
+.gray-110-buttons button:focus, button:hover, button:active {
+  @apply bg-gray-110;
 }
 
 .friend-list {
