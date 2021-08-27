@@ -27,11 +27,13 @@
         </div>
       </div>
       <div class="input w-full h-32 p-4">
-        <textarea name="message-to-send" v-model="toSend" class="focus:outline-none w-full resize-none border-none"
+        <textarea name="message-to-send" v-model="toSend" @keydown.enter.exact.prevent="doSend"
+                  @keydown.ctrl.enter.exact.prevent="doWrap"
+                  class="focus:outline-none w-full resize-none border-none"
                   rows="5"></textarea>
       </div>
       <div class="input-footer w-full flex flex-row-reverse pr-3 py-0 mb-1">
-        <a-button type="primary" size="small" @click="onSend">发送(S)</a-button>
+        <a-button type="primary" size="small" @click="doSend">发送</a-button>
       </div>
     </div>
   </div>
@@ -166,6 +168,11 @@ export default {
           ]
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.doScrollDown()
+    })
+  },
   methods: {
     handleMenuClick(e) {
       console.log(e)
@@ -173,7 +180,15 @@ export default {
     onCloseClick() {
       console.log('close button click')
     },
-    onSend() {
+    doWrap() {
+      console.log('do wrap')
+      this.toSend = this.toSend + '\r\n'
+    },
+    doScrollDown() {
+      this.$refs["chat-body"].scrollTop = this.$refs["chat-body"].scrollHeight
+    },
+    doSend() {
+      if (this.toSend === '') return
       const id = this.messageList.length + 1;
       const msg = {
         id: id,
@@ -184,14 +199,16 @@ export default {
         isSelf: true,
         msgFrom: 'Tao'
       }
+      console.log(msg)
 
       this.messageList = [...this.messageList, msg];
+      this.toSend = ''
     },
 
   }, watch: {
     messageList() {
       this.$nextTick(() => {
-        this.$refs["chat-body"].scrollTop = this.$refs["chat-body"].scrollHeight
+        this.doScrollDown()
       })
     },
   }

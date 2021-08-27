@@ -4,8 +4,7 @@
       <a-avatar shape="square" size="large" :src="avatarUrl" :style="{height:'100%', width:'100%'}"/>
     </div>
     <div class="row-span-16 h-5/6 pt-8 space-y-4">
-
-      <div v-for="menu in menus" :key="menu.index" @click="check(menu.index)"
+      <div v-for="menu in menus" :key="menu.index" @click="check(menu)"
            :class="{'checked':menu.index === checkedIndex}"
            class=" menu-button btn-border-none">
         <a-button text="text">
@@ -33,13 +32,16 @@ export default {
     return {
       checkedIndex: 1,
       menus: [
-        {index: 1, iconType: 'message', isChecked: true},
-        {index: 2, iconType: 'team', isChecked: false},
+        {index: 1, to: 'chatList', iconType: 'message', isChecked: true},
+        {index: 2, to: 'friendList', iconType: 'team', isChecked: false},
       ]
     }
   }, methods: {
-    check(index) {
-      this.checkedIndex = index
+    check(item) {
+      this.checkedIndex = item.index
+      if (this.$router.history.current.name !== item.to) {
+        this.$router.push({name: item.to})
+      }
     }
   }
 }
