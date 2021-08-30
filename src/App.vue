@@ -6,25 +6,12 @@
           <chat-menu></chat-menu>
         </div>
 
-        <div class="middle-body h-full w-64 pt-6 bg-yellow border-r flex flex-col border-grey">
-          <div class="search px-3 flex-none">
-            <SearchInput></SearchInput>
-          </div>
-          <div class="middle-list mt-2 overflow-scroll flex-1">
-            <div class="w-64">
-              <router-view></router-view>
-            </div>
-          </div>
-        </div>
+        <router-view></router-view>
 
         <div class="top-tool-buttons  gray-110-buttons right-0 top-0 flex justify-end text-gray-500 absolute">
           <div class="btn-border-none pr-2 pt-1">
             <a-button text="text" size="small" icon="close"/>
           </div>
-        </div>
-
-        <div class="chat-window w-full h-full bg-gray-110">
-          <chat-body></chat-body>
         </div>
       </div>
     </div>
@@ -33,8 +20,6 @@
 
 <script>
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
-import SearchInput from "./components/Search/SearchInput";
-import ChatBody from "./components/MainBody/ChatBody";
 import ChatMenu from "./components/ChatMenu/ChatMenu";
 
 export default {
@@ -46,8 +31,6 @@ export default {
   },
   components: {
     ChatMenu,
-    ChatBody,
-    SearchInput,
   }
 }
 </script>
