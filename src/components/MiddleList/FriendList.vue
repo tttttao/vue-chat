@@ -1,6 +1,6 @@
 <template>
-  <div class="friend-list px-2">
-    <a-tree>
+  <div class="friend-list">
+    <a-tree @select="onSelect" :blockNode="true">
       <a-tree-node v-for="group in treeData" :key="group.key" :title="group.title">
         <a-tree-node v-for="friend in group.children" :key="friend.key" class="friend-item">
           <template slot="title">
@@ -17,7 +17,6 @@
                 </template>
               </a-dropdown>
             </div>
-
           </template>
         </a-tree-node>
       </a-tree-node>
@@ -33,7 +32,7 @@ export default {
     return {
       treeData: [
         {
-          title: '同学',
+          title: '👌',
           key: 'g-1',
           children: [
             {
@@ -42,14 +41,62 @@ export default {
               avatar: require("@/assets/avatar.jpg"),
             },
             {
-              title: 'fei',
+              title: '阿飞',
               key: '2',
+              avatar: require("@/assets/avatar-tao.jpg"),
+            },
+            {
+              title: 'fei',
+              key: '3',
               avatar: require("@/assets/avatar.jpg"),
+            },
+            {
+              title: '👮‍♂️',
+              key: '4',
+              avatar: require("@/assets/avatar-kang.jpg"),
+            },
+            {
+              title: '康康',
+              key: '5',
+              avatar: require("@/assets/avatar-he.jpg"),
+            }, {
+              title: '康康',
+              key: '6',
+              avatar: require("@/assets/avatar-peng.jpg"),
+            }, {
+              title: '康康',
+              key: '7',
+              avatar: require("@/assets/avatar-fei.jpg"),
+            }, {
+              title: '康康',
+              key: '8',
+              avatar: require("@/assets/avatar.jpg"),
+            }, {
+              title: '贺贺',
+              key: '9',
+              avatar: require("@/assets/avatar-fei.jpg"),
+            },
+            {
+              title: '康康',
+              key: '10',
+              avatar: require("@/assets/avatar-peng.jpg"),
+            }, {
+              title: '康康',
+              key: '11',
+              avatar: require("@/assets/avatar-kang.jpg"),
+            }, {
+              title: '💻👩‍🚀',
+              key: '12',
+              avatar: require("@/assets/avatar-he.jpg"),
+            }, {
+              title: '康康',
+              key: '13',
+              avatar: require("@/assets/avatar-kang.jpg"),
             },
           ],
         },
         {
-          title: '同事',
+          title: '🐸',
           key: 'g-2',
           children: [
             {
@@ -60,7 +107,7 @@ export default {
             {
               title: '老王',
               key: '4',
-              avatar: require("@/assets/avatar.jpg")
+              avatar: require("@/assets/avatar-kang.jpg")
             },
           ],
         },
@@ -87,8 +134,38 @@ export default {
   @apply p-0;
 }
 
+.friend-item {
+  @apply p-1.5 !important;
+}
+
+.friend-item:hover {
+  @apply bg-gray-110;
+}
+
+.ant-tree li .ant-tree-node-selected {
+  @apply bg-transparent !important
+}
+
+.ant-tree li .ant-tree-treenode-selected {
+  @apply bg-gray-110 !important;
+}
+
+.ant-tree li .ant-tree-node-content-wrapper:hover {
+  @apply bg-transparent !important;
+}
+
+.friend-item span:hover, span:checked {
+  @apply bg-transparent !important;
+}
+
 .friend-item span {
-  @apply h-9 my-0.5 !important;
+  height: 36px !important;
+  @apply my-0.5 text-black !important;
+}
+
+.friend-item .ant-avatar {
+  @apply mr-2 my-auto;
+  width: 36px;
 }
 
 .friend-item .ant-tree-switcher {

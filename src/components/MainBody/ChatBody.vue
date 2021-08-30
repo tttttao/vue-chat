@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="chat-body bg-gray-110 px-3 pt-1.5 row-span-8 border-b overflow-scroll" ref="chat-body">
-      <message v-for="msg of messageList" :msg="msg" :key="msg.id"></message>
+      <message v-for="msg of messageList" :imageList="imageList" :msg="msg" :key="msg.id"></message>
     </div>
     <div class="chat-input row-span-3 flex h-full flex-col">
       <div class="input-tool gray-110-buttons w-full h-8 flex text-xl">
@@ -16,9 +16,16 @@
           </a-button>
         </div>
         <div>
-          <a-button text="text" size="small">
-            <a-icon type="picture"></a-icon>
-          </a-button>
+          <a-upload
+              :fileList="fileList"
+              name="file"
+              :show-upload-list="false"
+              @change="handleChange"
+          >
+            <a-button text="text" size="small">
+              <a-icon type="picture"></a-icon>
+            </a-button>
+          </a-upload>
         </div>
         <div>
           <a-button text="text" size="small">
@@ -27,20 +34,21 @@
         </div>
       </div>
       <div class="input w-full h-32 p-4">
-        <textarea name="message-to-send" v-model="toSend" @keydown.enter.exact.prevent="doSend"
+        <textarea name="message-to-send" v-model="toSend" @keydown.enter.exact.prevent="onSend"
                   @keydown.ctrl.enter.exact.prevent="doWrap"
                   class="focus:outline-none w-full resize-none border-none"
                   rows="5"></textarea>
       </div>
       <div class="input-footer w-full flex flex-row-reverse pr-3 py-0 mb-1">
-        <a-button type="primary" size="small" @click="doSend">发送</a-button>
+        <a-button type="primary" size="small" @click="onSend">发送</a-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Message from "./Messages/Message";
+import Message from "../Messages/Message";
+import {getBase64} from "../../tools/file";
 
 const avatarTao = require("@/assets/avatar-tao.jpg")
 const avatarKang = require("@/assets/avatar-kang.jpg")
@@ -55,6 +63,7 @@ export default {
   data() {
     return {
       toSend: '',
+      fileList: [],
       messageList:
           [
             {
@@ -173,12 +182,29 @@ export default {
       this.doScrollDown()
     })
   },
+  computed: {
+    imageList() {
+      let list = []
+      this.messageList.forEach(item => {
+        if (item.type === 'image') {
+          list.push(item.msg)
+        }
+      })
+      console.log(list)
+      return list
+    }
+  },
   methods: {
-    handleMenuClick(e) {
-      console.log(e)
-    },
-    onCloseClick() {
-      console.log('close button click')
+    handleChange(info) {
+      console.log(info)
+      let {fileList} = info
+      fileList.forEach((item) => {
+        getBase64(item.originFileObj).then((data) => {
+          this.toSend = data
+          this.doSend('image')
+        })
+      })
+      this.fileList = []
     },
     doWrap() {
       console.log('do wrap')
@@ -187,13 +213,16 @@ export default {
     doScrollDown() {
       this.$refs["chat-body"].scrollTop = this.$refs["chat-body"].scrollHeight
     },
-    doSend() {
+    onSend() {
+      this.doSend()
+    },
+    doSend(type = 'txt') {
       if (this.toSend === '') return
       const id = this.messageList.length + 1;
       const msg = {
         id: id,
         avatar: avatarTao,
-        type: 'txt',
+        type: type,
         msg: this.toSend,
         date: '2021-08-25 12:22:02',
         isSelf: true,

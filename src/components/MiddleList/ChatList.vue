@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full select-none">
     <div v-for="chat of chats" :key="chat.id">
       <div class="hover:bg-gray-100 chat-item py-3 px-3 grid grid-rows-2 grid-cols-5">
         <div class="avatar row-span-2 btn-border-none">

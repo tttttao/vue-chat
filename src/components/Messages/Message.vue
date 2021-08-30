@@ -8,7 +8,8 @@
         <div v-if="msg.type === 'txt'" class="leading-normal">
           <span v-html="message"></span>
         </div>
-        <el-image v-else-if="msg.type=== 'image'" :src="msg.msg" fit="contain" :lazy="true"></el-image>
+        <el-image v-else-if="msg.type=== 'image'" :preview-src-list="imageList" :src="msg.msg" fit="contain"
+                  :lazy="true"></el-image>
       </div>
     </div>
   </div>
@@ -19,6 +20,7 @@ export default {
   name: "Message",
   props: {
     msg: Object,
+    imageList: [],
   },
   computed: {
     message() {

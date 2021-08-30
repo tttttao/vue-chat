@@ -6,13 +6,13 @@
           <chat-menu></chat-menu>
         </div>
 
-        <div class="middle-body h-full w-64 py-6 bg-yellow border-r border-grey">
-          <div class="search px-3">
+        <div class="middle-body h-full w-64 pt-6 bg-yellow border-r flex flex-col border-grey">
+          <div class="search px-3 flex-none">
             <SearchInput></SearchInput>
           </div>
-          <div class="middle-list mt-4 overflow-scroll">
+          <div class="middle-list mt-2 overflow-scroll flex-1">
             <div class="w-64">
-            <router-view></router-view>
+              <router-view></router-view>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
 <script>
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import SearchInput from "./components/Search/SearchInput";
-import ChatBody from "./components/ChatBody";
+import ChatBody from "./components/MainBody/ChatBody";
 import ChatMenu from "./components/ChatMenu/ChatMenu";
 
 export default {
