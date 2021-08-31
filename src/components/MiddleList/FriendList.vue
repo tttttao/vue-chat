@@ -2,12 +2,12 @@
   <div class="friend-list">
     <a-tree @select="onSelect" :blockNode="true">
       <a-tree-node v-for="group in treeData" :key="group.key" :title="group.title">
-        <a-tree-node v-for="friend in group.children" :key="friend.key" class="friend-item">
+        <a-tree-node v-for="friend in group.children" :key="friend.key" class="friend-item text-gradient-parent">
           <template slot="title">
-            <div class="friend-li-title">
+            <div class="friend-li-title flex">
               <a-avatar shape="square" :src="friend.avatar"></a-avatar>
               <a-dropdown :trigger="['contextmenu']">
-                <span>{{ friend.title }}</span>
+                <div class=" flex items-center text-gradient">{{ friend.title }}</div>
                 <template #overlay>
                   <a-menu>
                     <a-menu-item key="1">1st menu item</a-menu-item>
@@ -36,7 +36,7 @@ export default {
           key: 'g-1',
           children: [
             {
-              title: 'kang',
+              title: 'kang222222222222222222222222222',
               key: '1',
               avatar: require("@/assets/avatar.jpg"),
             },
@@ -126,12 +126,22 @@ export default {
 </script>
 
 <style>
+
+.friend-item .text-gradient::after {
+  @apply right-0 w-full left-0;
+}
+
+
 .friend-list .ant-tree-switcher {
   line-height: 1.2 !important;
 }
 
+.friend-item .ant-dropdown-trigger {
+  @apply break-normal overflow-hidden w-40 leading-none truncate;
+}
+
 .friend-list .ant-tree li ul {
-  @apply p-0;
+  @apply p-0 relative;
 }
 
 .friend-item {
@@ -147,7 +157,7 @@ export default {
 }
 
 .ant-tree li .ant-tree-treenode-selected {
-  @apply bg-gray-110 !important;
+  @apply bg-none !important;
 }
 
 .ant-tree li .ant-tree-node-content-wrapper:hover {
