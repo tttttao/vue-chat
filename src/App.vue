@@ -1,26 +1,13 @@
 <template>
   <a-locale-provider :locale="zh_CN">
     <div class="app h-screen flex bg-blue-100">
-      <div id="chat-body" class="rounded-md bg-white m-auto shadow-xl flex overflow-hidden relative">
-        <div class="chat-menu">
-          <chat-menu></chat-menu>
-        </div>
-
-        <router-view></router-view>
-
-        <div class="top-tool-buttons  gray-110-buttons right-0 top-0 flex justify-end text-gray-500 absolute">
-          <div class="btn-border-none pr-2 pt-1">
-            <a-button text="text" size="small" icon="close"/>
-          </div>
-        </div>
-      </div>
+      <router-view></router-view>
     </div>
   </a-locale-provider>
 </template>
 
 <script>
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
-import ChatMenu from "./components/ChatMenu/ChatMenu";
 
 export default {
   name: 'app',
@@ -29,9 +16,6 @@ export default {
       zh_CN,
     }
   },
-  components: {
-    ChatMenu,
-  }
 }
 </script>
 

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ChatList from "../views/ChatList";
 import FriendList from "../views/FriendList";
+import Login from "../views/Login";
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
         path: '/friend-list',
         name: 'friendList',
         component: FriendList
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     }
 ]
 
