@@ -4,12 +4,21 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    state: {
+        isLogin: false,
+    },
+    getters: {
+        isLogin: state => state.isLogin,
+    },
+    mutations: {
+        userStatus(state, flag) {
+            state.isLogin = flag
+        },
+    },
+    actions: {
+        userLogin({commit}, flag) {
+            commit('userStatus', flag)
+        }
+    },
+    modules: {}
 })

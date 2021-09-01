@@ -4,8 +4,8 @@
       <a-avatar shape="square" size="large" :src="avatarUrl" :style="{height:'100%', width:'100%'}"/>
     </div>
     <div class="row-span-16 h-5/6 pt-8 space-y-4">
-      <div v-for="menu in menus" :key="menu.index" @click="check(menu)"
-           :class="{'checked':menu.index === checkedIndex}"
+      <div v-for="(menu,index) in menus" :key="index" @click="check(menu)"
+           :class="{'checked':menu.to === checkedMenu}"
            class=" menu-button btn-border-none">
         <a-button text="text">
           <a-icon :type="menu.iconType"/>
@@ -13,32 +13,49 @@
       </div>
     </div>
     <div class="menu-button mt-10 btn-border-none">
-      <a-button text="text">
-        <a-icon type="menu"/>
-      </a-button>
+      <a-popover title="菜单" trigger="click" placement="rightBottom">
+        <template slot="content">
+          <ul>
+            <li @click.prevent="onLogout">退出</li>
+          </ul>
+        </template>
+        <a-button text="text">
+          <a-icon type="menu"/>
+        </a-button>
+      </a-popover>
+
     </div>
   </div>
 </template>
 
 <script>
+import {logout} from "@/tools/functions";
+
 export default {
   name: "ChatMenu",
   computed: {
     avatarUrl() {
       return require('@/assets/avatar-tao.jpg');
+    },
+    checkedMenu() {
+      for (let item of this.menus) {
+        if (this.$router.history.current.name === item.to) return item.to;
+      }
+      return '';
     }
   },
   data() {
     return {
-      checkedIndex: 1,
       menus: [
-        {index: 1, to: 'chatList', iconType: 'message', isChecked: true},
-        {index: 2, to: 'friendList', iconType: 'team', isChecked: false},
+        {to: 'chatList', iconType: 'message', isChecked: true},
+        {to: 'friendList', iconType: 'team', isChecked: false},
       ]
     }
   }, methods: {
+    onLogout() {
+      logout();
+    },
     check(item) {
-      this.checkedIndex = item.index
       if (this.$router.history.current.name !== item.to) {
         this.$router.push({name: item.to})
       }

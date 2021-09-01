@@ -55,7 +55,8 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$router.push('/')
+          this.$store.dispatch('userLogin', true)
+          this.$router.push({name: 'chatList'})
         } else {
           console.log('error submit!!');
           return false;

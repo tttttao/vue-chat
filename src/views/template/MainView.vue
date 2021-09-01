@@ -20,9 +20,9 @@
       </div>
     </div>
 
-    <div class="top-tool-buttons  right-0 top-0 flex justify-end text-gray-500 absolute">
-      <div class="btn-border-none bg-transparent pr-2 pt-1">
-        <a-button text="text" size="small" icon="close"/>
+    <div class="top-tool-buttons right-0 top-0 flex justify-end text-gray-500 absolute">
+      <div class="btn-border-none pr-2 pt-1">
+        <a-button text="text" size="small" icon="close" @click.prevent="onCloseClick"/>
       </div>
     </div>
   </div>
@@ -31,16 +31,24 @@
 <script>
 import SearchInput from "@/components/Search/SearchInput";
 import ChatMenu from "@/components/ChatMenu/ChatMenu";
+import {logout} from "@/tools/functions";
 
 export default {
   name: "mainView",
   components: {
     'search-input': SearchInput,
     'chat-menu': ChatMenu,
+  }, methods: {
+    onCloseClick() {
+      logout()
+    }
   }
 }
 </script>
 
 <style scoped>
+.top-tool-buttons button {
+  @apply bg-transparent;
+}
 
 </style>
