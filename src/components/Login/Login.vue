@@ -1,61 +1,69 @@
 <template>
-  <div id="login-body" class="rounded-md bg-white m-auto shadow-xl flex overflow-hidden relative">
-    <div class="bg-gray-50 p-16">
-      <a-form :form="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="handleSubmit">
-        <a-form-item label="Note">
-          <a-input
-              v-decorator="['note', { rules: [{ required: true, message: 'Please input your note!' }] }]"
-          />
-        </a-form-item>
-        <a-form-item label="Gender">
-          <a-select
-              v-decorator="[
-          'gender',
-          { rules: [{ required: true, message: 'Please select your gender!' }] },
-        ]"
-              placeholder="Select a option and change input text above"
-              @change="handleSelectChange"
-          >
-            <a-select-option value="male">
-              male
-            </a-select-option>
-            <a-select-option value="female">
-              female
-            </a-select-option>
-          </a-select>
-        </a-form-item>
-        <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
-          <a-button type="primary" html-type="submit">
+  <div id="login-body" class="rounded-md bg-white m-auto shadow-xl w-144 flex overflow-hidden relative">
+    <div class="bg-gray-50 p-16 w-full">
+      <a-form-model ref="ruleForm"
+                    :model="ruleForm" :rules="rules"
+                    v-bind="layout">
+        <a-form-model-item has-feedback label="账号" prop="账号">
+          <a-input v-model="ruleForm.username"/>
+        </a-form-model-item>
+        <a-form-model-item has-feedback label="密码" prop="密码">
+          <a-input v-model="ruleForm.pass" type="password" autocomplete="off"/>
+        </a-form-model-item>
+
+        <a-form-model-item :wrapper-col="{ span: 24, offset: 8 }">
+          <a-button type="primary" @click="submitForm('ruleForm')">
             Submit
           </a-button>
-        </a-form-item>
-      </a-form>
+        </a-form-model-item>
+      </a-form-model>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Login", data() {
+  name: "Login",
+  data() {
+    let validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Please input the password'));
+      } else {
+        if (this.ruleForm.username !== '') {
+          this.$refs.ruleForm.validateField('checkPass');
+        }
+        callback();
+      }
+    };
     return {
-      formLayout: 'horizontal',
-      form: this.$form.createForm(this, {name: 'coordinated'}),
+      ruleForm: {
+        pass: '',
+        username: '',
+      },
+      rules: {
+        pass: [{validator: validatePass, trigger: 'change'}],
+      },
+      layout: {
+        wrapperCol: {span: 16},
+        labelCol: {span: 4, offset: 2},
+        colon: false,
+        labelAlign: 'left',
+      },
     };
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values);
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.$router.push('/')
+        } else {
+          console.log('error submit!!');
+          return false;
         }
       });
     },
-    handleSelectChange(value) {
-      console.log(value);
-      this.form.setFieldsValue({
-        note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
-      });
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     },
   },
 }
