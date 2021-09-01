@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  #php
+  app:
+    build: .
+    image: vue-chat
+    container_name: vue-chat
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
