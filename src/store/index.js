@@ -1,24 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import user from './modules/user'
+import chatList from './modules/chatList'
+import friendList from './modules/friendList'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {
-        isLogin: false,
+    modules: {
+        user,
+        chatList,
+        friendList,
     },
-    getters: {
-        isLogin: state => state.isLogin,
-    },
-    mutations: {
-        userStatus(state, flag) {
-            state.isLogin = flag
-        },
-    },
-    actions: {
-        userLogin({commit}, flag) {
-            commit('userStatus', flag)
-        }
-    },
-    modules: {}
 })

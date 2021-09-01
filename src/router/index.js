@@ -41,7 +41,7 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-    let isLogin = router.app.$store.state.isLogin === true
+    let isLogin = router.app.$store.state.user.isLogin === true
     if (to.meta.isLogin && isLogin === false) {
         next({name: 'login'})
     } else {
