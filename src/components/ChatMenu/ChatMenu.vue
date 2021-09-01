@@ -13,9 +13,9 @@
       </div>
     </div>
     <div class="menu-button mt-10 btn-border-none">
-      <a-popover title="菜单" trigger="click" placement="rightBottom">
+      <a-popover title="菜单" trigger="click" overlayClassName="menu-popover" placement="rightBottom">
         <template slot="content">
-          <ul>
+          <ul class="menu-ul">
             <li @click.prevent="onLogout">退出</li>
           </ul>
         </template>
@@ -80,5 +80,21 @@ export default {
 
 .left-menu i {
   @apply text-lg !important;
+}
+
+.menu-popover .ant-popover-inner-content {
+  @apply py-1 px-0;
+}
+
+.menu-ul {
+  @apply m-0;
+}
+
+.menu-ul li {
+  @apply p-3;
+}
+
+.menu-ul li:hover {
+  @apply bg-gray-110 ;
 }
 </style>

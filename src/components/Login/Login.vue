@@ -1,19 +1,22 @@
 <template>
-  <div id="login-body" class="rounded-md bg-white m-auto shadow-xl w-144 flex overflow-hidden relative">
-    <div class="bg-gray-50 p-16 w-full">
+  <div id="login-body" class="rounded-md bg-gray-110 m-auto shadow-xl flex overflow-hidden relative">
+    <div class="body-bg">
+      <img class="w-96" :src="loginBg"/>
+    </div>
+    <div class="body-form  w-144 p-16 self-center">
       <a-form-model ref="ruleForm"
                     :model="ruleForm" :rules="rules"
                     v-bind="layout">
-        <a-form-model-item has-feedback label="账号" prop="账号">
+        <a-form-model-item has-feedback class="tracking-widest" label="账号" prop="账号">
           <a-input v-model="ruleForm.username"/>
         </a-form-model-item>
-        <a-form-model-item has-feedback label="密码" prop="密码">
+        <a-form-model-item has-feedback class="tracking-widest" label="密码" prop="密码">
           <a-input v-model="ruleForm.pass" type="password" autocomplete="off"/>
         </a-form-model-item>
 
-        <a-form-model-item :wrapper-col="{ span: 24, offset: 8 }">
+        <a-form-model-item :wrapper-col="{ span: 24, offset: 18 }">
           <a-button type="primary" @click="submitForm('ruleForm')">
-            Submit
+            登录
           </a-button>
         </a-form-model-item>
       </a-form-model>
@@ -22,6 +25,9 @@
 </template>
 
 <script>
+import {shuffleArray} from "@/tools/functions";
+
+
 export default {
   name: "Login",
   data() {
@@ -50,6 +56,18 @@ export default {
         labelAlign: 'left',
       },
     };
+  }, computed: {
+    loginBg() {
+      const bgArr = shuffleArray([
+        require('@/assets/login-bg.jpg'),
+        require('@/assets/login-bg-1.jpg'),
+        require('@/assets/login-bg-2.jpg'),
+        require('@/assets/login-bg-3.jpg'),
+        require('@/assets/login-bg-4.jpg'),
+      ]);
+      console.log(bgArr)
+      return bgArr[0]
+    }
   },
   methods: {
     submitForm(formName) {
