@@ -55,6 +55,8 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 const avatarTao = require("@/assets/avatar-tao.jpg")
 const formItemLayout = {
   labelCol: {span: 3},
@@ -77,7 +79,7 @@ export default {
         formTailLayout,
       },
       profile: {
-        group: 1,
+        group: 'g-1',
         avatar: avatarTao,
         name: 'tttttao',
         account: '519767697',
@@ -88,12 +90,7 @@ export default {
     }
   },
   computed: {
-    groupList() {
-      return [
-        {'id': 1, 'name': '👦'},
-        {'id': 2, 'name': '🕵️‍♀️'},
-      ]
-    }
+    ...mapGetters({'groupList':'getGroup'}),
   }
 }
 </script>

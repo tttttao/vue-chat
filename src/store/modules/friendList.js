@@ -66,7 +66,7 @@ export default {
                 ],
             },
             {
-                title: '🐸',
+                title: '🐸同学',
                 key: 'g-2',
                 children: [
                     {
@@ -85,5 +85,13 @@ export default {
     }),
     mutations: {},
     actions: {},
-    getters: {},
+    getters: {
+        getGroup({friendList}) {
+            let groups = []
+            friendList.forEach(function (friendGroup) {
+                groups.push({name: friendGroup.title, id: friendGroup.key})
+            })
+            return groups
+        },
+    },
 }
