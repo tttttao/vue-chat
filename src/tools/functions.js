@@ -2,7 +2,7 @@ import router from "../router";
 import store from "../store";
 
 export function logout() {
-    store.dispatch('userLogin', false)
+    store.dispatch('userLogout')
     router.push({name: 'login'})
 }
 
