@@ -1,97 +1,63 @@
 export default {
     state: () => ({
+        currentFriend: {},
+        groupList: [
+            {id: 'g-1', name: '同学'},
+            {id: 'g-2', name: '同事'},
+        ],
         friendList: [
             {
-                title: '👌',
-                key: 'g-1',
-                children: [
-                    {
-                        title: 'kang222222222222222222222222222',
-                        key: '1',
-                        avatar: require("@/assets/avatar.jpg"),
-                    },
-                    {
-                        title: '阿飞',
-                        key: '2',
-                        avatar: require("@/assets/avatar-tao.jpg"),
-                    },
-                    {
-                        title: 'fei',
-                        key: '3',
-                        avatar: require("@/assets/avatar.jpg"),
-                    },
-                    {
-                        title: '👮‍♂️',
-                        key: '4',
-                        avatar: require("@/assets/avatar-kang.jpg"),
-                    },
-                    {
-                        title: '康康',
-                        key: '5',
-                        avatar: require("@/assets/avatar-he.jpg"),
-                    }, {
-                        title: '康康',
-                        key: '6',
-                        avatar: require("@/assets/avatar-peng.jpg"),
-                    }, {
-                        title: '康康',
-                        key: '7',
-                        avatar: require("@/assets/avatar-fei.jpg"),
-                    }, {
-                        title: '康康',
-                        key: '8',
-                        avatar: require("@/assets/avatar.jpg"),
-                    }, {
-                        title: '贺贺',
-                        key: '9',
-                        avatar: require("@/assets/avatar-fei.jpg"),
-                    },
-                    {
-                        title: '康康',
-                        key: '10',
-                        avatar: require("@/assets/avatar-peng.jpg"),
-                    }, {
-                        title: '康康',
-                        key: '11',
-                        avatar: require("@/assets/avatar-kang.jpg"),
-                    }, {
-                        title: '💻👩‍🚀',
-                        key: '12',
-                        avatar: require("@/assets/avatar-he.jpg"),
-                    }, {
-                        title: '康康',
-                        key: '13',
-                        avatar: require("@/assets/avatar-kang.jpg"),
-                    },
-                ],
+                id: '1',
+                nickname: '严禁投机倒把',
+                group_id: 'g-1',
+                account: '1233412',
+                intro: '',
+                remark: '康康',
+                remarkInfo: '',
+                avatar: require("@/assets/avatar.jpg"),
             },
             {
-                title: '🐸同学',
-                key: 'g-2',
-                children: [
-                    {
-                        title: '小张',
-                        key: '3',
-                        avatar: require("@/assets/avatar.jpg")
-                    },
-                    {
-                        title: '老王',
-                        key: '4',
-                        avatar: require("@/assets/avatar-kang.jpg")
-                    },
-                ],
+                id: '2',
+                nickname: 'kang',
+                group_id: 'g-2',
+                account: '1233412',
+                intro: 'lala',
+                remark: '阿飞',
+                remarkInfo: '',
+                avatar: require("@/assets/avatar-kang.jpg"),
+            },
+            {
+                id: '3',
+                nickname: 'kang',
+                group_id: 'g-2',
+                account: '1233412',
+                intro: '',
+                remark: '黄多多',
+                remarkInfo: '',
+                avatar: require("@/assets/avatar-tao.jpg"),
             },
         ]
     }),
-    mutations: {},
+    mutations: {
+        setCurrentFriend(state, payload) {
+            state.friendList.forEach((friend) => {
+                if (friend.id === payload.id) state.currentFriend = friend
+            })
+        },
+        modifyFriend(state, {profile}) {
+            state.friendList = state.friendList.map((friend) => friend.id === profile.id ? profile : friend)
+        }
+    },
     actions: {},
     getters: {
-        getGroup({friendList}) {
-            let groups = []
-            friendList.forEach(function (friendGroup) {
-                groups.push({name: friendGroup.title, id: friendGroup.key})
-            })
-            return groups
+        getFriendList({friendList}) {
+            return friendList
+        },
+        getCurrentFriend({currentFriend}) {
+            return currentFriend
+        },
+        getGroupList({groupList}) {
+            return groupList
         },
     },
 }
