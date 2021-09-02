@@ -3,13 +3,21 @@
     <div>
       <a-collapse accordion :bordered="false" class="collapse">
         <a-collapse-panel v-for="group in treeData" :key="group.key" :header="group.title" class="collapse-panel">
-          <div v-for="friend in group.children" :key="friend.id" @click="onFriendClick(friend)" class="py-2 px-3 flex space-x-2 hover:bg-gray-110">
-            <div class="friend-avatar">
-              <a-avatar shape="square" :src="friend.avatar"></a-avatar>
-            </div>
-            <div class="friend-remark flex-1 self-center">
-              {{ friend.remark }}
-            </div>
+          <div v-for="friend in group.children" :key="friend.id" @click="onFriendClick(friend)"
+               class="py-2 px-3 flex hover:bg-gray-110">
+            <a-dropdown :trigger="['contextmenu']">
+              <div class="w-full flex space-x-2">
+                <div class="friend-avatar">
+                  <a-avatar shape="square" :src="friend.avatar"></a-avatar>
+                </div>
+                <div class="friend-remark flex-1 self-center">
+                  {{ friend.remark }}
+                </div>
+              </div>
+              <a-menu slot="overlay">
+                <a-menu-item @click="onDeleteClick(friend)">删除好友</a-menu-item>
+              </a-menu>
+            </a-dropdown>
           </div>
         </a-collapse-panel>
       </a-collapse>
@@ -51,6 +59,9 @@ export default {
     },
   },
   methods: {
+    onDeleteClick({id}) {
+      this.$store.commit('deleteFriend', {id})
+    },
     onFriendClick({id}) {
       this.$store.commit('setCurrentFriend', {id})
     },

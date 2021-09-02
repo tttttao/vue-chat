@@ -44,6 +44,9 @@ export default {
                 if (friend.id === payload.id) state.currentFriend = friend
             })
         },
+        deleteFriend(state, {id}) {
+            state.friendList = state.friendList.filter(friend => friend.id !== id)
+        },
         modifyFriend(state, {profile}) {
             state.friendList = state.friendList.map((friend) => friend.id === profile.id ? profile : friend)
         }
