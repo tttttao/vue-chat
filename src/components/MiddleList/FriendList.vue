@@ -65,13 +65,7 @@ export default {
     onFriendClick({id}) {
       this.$store.commit('setCurrentFriend', {id})
     },
-    onSelect(selectedKeys, info) {
-      console.log('selected', selectedKeys, info);
-    },
-    onCheck(checkedKeys, info) {
-      console.log('onCheck', checkedKeys, info);
-    },
-  },
+  }
 }
 </script>
 
